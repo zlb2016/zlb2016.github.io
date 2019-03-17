@@ -152,6 +152,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-javastack" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/17/javastack/">javastack</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/17/javastack/" class="archive-article-date">
+  	<time datetime="2019-03-17T14:05:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="java中栈的程序"><a href="#java中栈的程序" class="headerlink" title="java中栈的程序"></a>java中栈的程序</h1><h4 id="1-什么是数据结构中栈"><a href="#1-什么是数据结构中栈" class="headerlink" title="1.什么是数据结构中栈"></a>1.什么是数据结构中栈</h4><p>栈（stack），有些地方称为堆栈，是一种容器，可存入数据元素、访问元素、删除元素，它的特点在于只能允许在容器的一端（称为栈顶端指标，英语：top）进行加入数据（英语：push）和输出数据（英语：pop）的运算。没有了位置概念，保证任何时候可以访问、删除的元素都是此前最后存入的那个元素，确定了一种默认的访问顺序。</p>
+<p>由于栈数据结构只允许在一端进行操作，因而按照后进先出（LIFO, Last In First Out）的原理运作。</p>
+<h5 id="1-1栈结构实现"><a href="#1-1栈结构实现" class="headerlink" title="1.1栈结构实现"></a>1.1栈结构实现</h5><p>栈可以用顺序表实现，也可以用链表实现。</p>
+<h5 id="1-2栈的操作"><a href="#1-2栈的操作" class="headerlink" title="1.2栈的操作"></a>1.2栈的操作</h5><ul>
+<li>Stack() 创建一个新的空栈</li>
+<li>push(item) 添加一个新的元素item到栈顶</li>
+<li>pop() 弹出栈顶元素</li>
+<li>peek() 返回栈顶元素</li>
+<li>is_empty() 判断栈是否为空</li>
+<li>size() 返回栈的元素个数</li>
+</ul>
+<h5 id="1-3java代码实现栈"><a href="#1-3java代码实现栈" class="headerlink" title="1.3java代码实现栈"></a>1.3java代码实现栈</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> stack;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayStack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span>[] a;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;<span class="comment">//栈数组的大小</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> top;<span class="comment">//栈顶</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayStack</span><span class="params">(<span class="keyword">int</span> maxSize)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.size=maxSize;</span><br><span class="line">        <span class="keyword">this</span>.a=<span class="keyword">new</span> <span class="keyword">long</span>[size];</span><br><span class="line">        <span class="keyword">this</span>.top=-<span class="number">1</span>;<span class="comment">//表示空栈</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">long</span> value)</span></span>&#123;<span class="comment">//入栈</span></span><br><span class="line">        <span class="keyword">if</span>(isFull())&#123;</span><br><span class="line">            System.out.println(<span class="string">"栈已满！"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        a[++top]=value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">peek</span><span class="params">()</span></span>&#123;<span class="comment">//返回栈顶内容，但不删除</span></span><br><span class="line">        <span class="keyword">if</span>(isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">"栈中没有数据！"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a[top];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">pop</span><span class="params">()</span></span>&#123;<span class="comment">//弹出栈顶内容，删除</span></span><br><span class="line">        <span class="keyword">if</span>(isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">"栈中没有数据！"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a[top--];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> top+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (top==-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFull</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (top==size-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=top;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            System.out.print(a[i]+<span class="string">"\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="测试类："><a href="#测试类：" class="headerlink" title="测试类："></a>测试类：</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> stack;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">teststack</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write your code here</span></span><br><span class="line">        ArrayStack as=<span class="keyword">new</span> ArrayStack(<span class="number">3</span>);</span><br><span class="line">        as.push(<span class="number">1</span>);<span class="comment">//入栈</span></span><br><span class="line">        as.push(<span class="number">2</span>);</span><br><span class="line">        as.push(<span class="number">3</span>);</span><br><span class="line">        as.peek();<span class="comment">//取栈顶元素</span></span><br><span class="line">        as.pop();<span class="comment">//出栈</span></span><br><span class="line">        as.display();<span class="comment">//展示栈内元素</span></span><br><span class="line">        <span class="comment">//System.out.println(as.display());</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h6><p><img src="/2019/03/17/javastack/1.png" alt="1552832221742"></p>
+<h6 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析:"></a>结果分析:</h6><p>将1，2，3依次入栈，栈中元素为3，2，1；使用pop出栈3，栈中元素为2，1</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/17/javastack/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Typora" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
